@@ -31,7 +31,7 @@ namespace PlayerInfo
 
 		public override string Description
 		{
-			get { return "An info changer for player eg name, hp and mana"; }
+			get { return "An info changer for player eg name, hp and mana!"; }
 		}
 
 		public PlayerInfo(Main game)
@@ -118,10 +118,8 @@ namespace PlayerInfo
 				iPlayer.TPlayer.statManaMax = mana;
 				NetMessage.SendData(16, -1, -1, null, iPlayer.Index, 0f, 0f, 0f, 0); // Sends Health Packet
 				NetMessage.SendData(42, -1, -1, null, iPlayer.Index, 0f, 0f, 0f, 0); // Sends Mana Packet
-				//NetMessage.SendData((int)msgType, this.Index, -1, NetworkText.FromLiteral(text), number, number2, number3, number4, number5, 0, 0);
 				args.Player.SendSuccessMessage(string.Format("The Player's Stats have been set!"));
-				iPlayer.SendSuccessMessage(string.Format("Your Stats have been modified!"));
-				//SendData(PacketTypes.PlayerAddBuff, number: Index, number2: type, number3: time);
+				iPlayer.SendSuccessMessage(string.Format("Your Stats have been modified!"))
 			}
 		}
 		void SelfName(CommandArgs args)
@@ -161,7 +159,6 @@ namespace PlayerInfo
 			plr.TPlayer.name = newName;
 			TShock.Utils.Broadcast(string.Format("{0} has changed his name to {1}.", oldname, newName), Color.DeepPink);
 			plr.SendData(PacketTypes.PlayerInfo, newName, plr.Index);
-			//NetMessage.SendData((int)PacketTypes.PlayerInfo, -1, -1, plr.TPlayer.name, args.Player.Index, 0, 0, 0, 0);
 		}
 	}
 }
